@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    class Server
+    public class Server
     {
+        public string Address { get; set; }
+        public Int16 Port { get; set; }
     }
 }

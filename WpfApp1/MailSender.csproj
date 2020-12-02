@@ -64,6 +64,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\TestData.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Recipient.cs" />
+    <Compile Include="Models\Sender.cs" />
+    <Compile Include="Models\Server.cs" />
     <Compile Include="Msg.cs" />
     <Compile Include="Sender.cs" />
     <Compile Include="TestWindow.xaml.cs">

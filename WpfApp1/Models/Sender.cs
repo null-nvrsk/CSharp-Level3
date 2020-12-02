@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Models
 {
-    class Server
+    public class Sender
     {
+        public string DisplayName { get; set; }
+        public string Email { get; set; }
+
+
     }
 }

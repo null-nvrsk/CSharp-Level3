@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Data
 {
-    class TestData
+    static class TestData
     {
+
+
     }
 }
