@@ -32,23 +32,5 @@ namespace WpfApp1
 
         }
 
-        private void SendBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Sender mailSender = new Sender();
-            mailSender.Email = tbEmail.Text;
-            mailSender.DisplayName = tbDisplayName.Text;
-            mailSender.Login = tbLogin.Text;
-            mailSender.Password = tbPassword.Password;
-            mailSender.SmtpServer = tbSmtpServer.Text;
-            mailSender.SmtpPort = Convert.ToInt16(tbSmtpPort.Text);
-
-            string recipient = tbRecipient.Text;
-
-            Msg message = new Msg();
-            message.Subject = tbSubject.Text;
-            message.Body = tbBody.Text;
-
-            Mailer.Send(mailSender, recipient, message);
-        }
     }
 }
