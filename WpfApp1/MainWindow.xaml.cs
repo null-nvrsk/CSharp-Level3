@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Support;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -32,5 +33,12 @@ namespace MailSenderWPF
 
         }
 
+        private void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            var mailer = new Mailer();
+            //
+            // mailer.SendMail();
+
+        }
     }
 }

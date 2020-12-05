@@ -99,7 +99,7 @@
                     <GroupBox Header="Календарь" Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="180">
                             <Calendar></Calendar>
-                            <Button Content="Отправить" Margin="0,2"></Button>
+                            <Button Name="btnSend" Content="Отправить" Margin="0,2" Click="btnSend_Click"></Button>
                             <Button Content="Запланировать" Margin="0,2"></Button>
                         </StackPanel>
 
