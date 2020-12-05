@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa5="http://schemas.fontawesome.com/icons/"
-        xmlns:local="clr-namespace:WpfApp1"
-        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="WpfApp1.MainWindow"
+        xmlns:local="clr-namespace:MailSenderWPF"
+        xmlns:data="clr-namespace:MailSenderWPF.Data"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="MailSenderWPF.MainWindow"
         mc:Ignorable="d" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow"
         Title="Mail Sender" Width="700">
     <Window.Resources>
@@ -39,10 +40,8 @@
                     <ToolBarTray DockPanel.Dock="Top" IsLocked="False">
                         <ToolBar Header="Сервера" Width="350" Height="35" Band="0" BandIndex="1">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0">
-                                    <ComboBoxItem>smtp.gmail.com</ComboBoxItem>
-                                    <ComboBoxItem>smtp.mail.ru</ComboBoxItem>
-                                    <ComboBoxItem>smtp.yandex.ru</ComboBoxItem>
+                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0" ItemsSource="{x:Static data:TestData.Servers}" DisplayMemberPath="FullAddress">
+
                                 </ComboBox>
                                 <Button Padding="5" Margin="2,0" HorizontalContentAlignment="Center" Width="30">
                                     <fa5:SvgAwesome Icon="Regular_PlusSquare" Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -60,10 +59,8 @@
                         </ToolBar>
                         <ToolBar Header="Отправители" Width="350" Height="35" Band="1" >
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0">
-                                    <ComboBoxItem>Иванов</ComboBoxItem>
-                                    <ComboBoxItem>Петров</ComboBoxItem>
-                                    <ComboBoxItem>Сидоров</ComboBoxItem>
+                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0" ItemsSource="{x:Static data:TestData.Senders}" DisplayMemberPath="DisplayName">
+
                                 </ComboBox>
                                 <Button Padding="5" Margin="2,0" HorizontalContentAlignment="Center" Width="30">
                                     <fa5:SvgAwesome Icon="Regular_PlusSquare" Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -83,11 +80,11 @@
                         <ToolBar Header="Планировщик" Width="300" Height="35" BandIndex="1">
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid DockPanel.Dock="bottom">
+                    <DataGrid DockPanel.Dock="bottom" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Имя"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Адрес"></DataGridTextColumn>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="Auto"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Адрес" Binding="{Binding Email}" Width="*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
