@@ -152,21 +152,18 @@
             <TabItem Header="Редактор писем">
                 <DockPanel>
                     <GroupBox DockPanel.Dock="Left" Header="Письма">
-                        <ListBox  Width="200">
-                            <ListBoxItem>Письмо 1</ListBoxItem>
-                            <ListBoxItem>Письмо 2</ListBoxItem>
-                            <ListBoxItem>Письмо 3</ListBoxItem>
+                        <ListBox Name="MessageList"  Width="200" ItemsSource="{x:Static data:TestData.Messages }" DisplayMemberPath="Subject">
                         </ListBox>
                     </GroupBox>
 
                     <GroupBox DockPanel.Dock="Right" Header="Редактирование письма">
                         <DockPanel>
                             <GroupBox Header="Тема письма" DockPanel.Dock="Top">
-                                <TextBox Text="Тема"></TextBox>
+                                <TextBox Text="{Binding ElementName=MessageList, Path=SelectedItem.Subject, UpdateSourceTrigger=PropertyChanged}"></TextBox>
                             </GroupBox>
 
                             <GroupBox Header="Текст письма" DockPanel.Dock="Bottom">
-                                <TextBox Text="Тестовое сообщение" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
+                                <TextBox Text="{Binding ElementName=MessageList, Path=SelectedItem.Body, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
                             </GroupBox>
 
                         </DockPanel>

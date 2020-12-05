@@ -40,5 +40,6 @@ namespace MailSenderWPF
             // mailer.SendMail();
 
         }
+
     }
 }

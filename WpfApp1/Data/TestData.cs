@@ -39,5 +39,13 @@ namespace MailSenderWPF.Data
             }
         }
 
+        public static List<Message> Messages
+        {
+            get
+            {
+                return Enumerable.Range(0, 10).Select(i => new Message() { Subject = $"subject{i}", Body = $"body{i}" }).ToList();
+            }
+        }
+
     }
 }
