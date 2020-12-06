@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MailSenderWPF.ViewModels;
-using MailSenderWPF.Services;
+using MailService;
 
 namespace MailSenderWPF
 {

@@ -10,7 +10,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using MailSenderWPF.Commands;
-using MailSenderWPF.Services;
+using MailService;
 using MailSenderWPF.ViewModels;
 
 namespace MailSenderWPF.ViewModels

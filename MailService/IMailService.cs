@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MailSenderWPF.Services
+namespace MailService
 {
     public interface IMailService
     {

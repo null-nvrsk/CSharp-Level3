@@ -212,9 +212,6 @@
     <Compile Include="Models\Sender.cs" />
     <Compile Include="Models\Server.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Services\DebugMailService.cs" />
-    <Compile Include="Services\IMailService.cs" />
-    <Compile Include="Services\SmtpMailService.cs" />
     <Compile Include="ViewModels\MainViewModelCommands.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -266,9 +263,9 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Support\Support.csproj">
-      <Project>{0cf7c47f-fcf8-437c-8326-f9168eacb2ba}</Project>
-      <Name>Support</Name>
+    <ProjectReference Include="..\MailService\MailService.csproj">
+      <Project>{e1ed0c87-f82b-4d9c-bd3a-6ca1363fc513}</Project>
+      <Name>MailService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
