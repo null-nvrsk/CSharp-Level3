@@ -8,7 +8,7 @@
         xmlns:data="clr-namespace:MailSenderWPF.Data"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="MailSenderWPF.MainWindow"
         mc:Ignorable="d" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow"
-        Title="Mail Sender" Width="700">
+        Title="Mail Sender" Width="700" SizeToContent="Height">
     <Window.Resources>
         <Style x:Key="StatColumn0Style" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Arial"></Setter>
