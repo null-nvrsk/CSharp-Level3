@@ -15,155 +15,8 @@ using MailSenderWPF.ViewModels;
 
 namespace MailSenderWPF.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public partial class MainViewModel : ViewModelBase
     {
-
-        #region Commands
-
-        public ICommand SendMessageCommand { get; set; }
-        //public ICommand DialogCommand { get; set; }
-        public ICommand AddServerCommand { get; set; }
-        public ICommand EditServerCommand { get; set; }
-        public ICommand DelServerCommand { get; set; }
-
-        public ICommand AddSenderCommand { get; set; }
-        public ICommand EditSenderCommand { get; set; }
-        public ICommand DelSenderCommand { get; set; }
-
-        public ICommand AddRecipientCommand { get; set; }
-        public ICommand EditRecipientCommand { get; set; }
-        public ICommand DelRecipientCommand { get; set; }
-
-
-        //----------------------------------------------------
-        public void AddServerCommand_Execute()
-        {
-            MessageBox.Show("Add server");
-        }
-
-        public bool AddServerCommand_CanExecute()
-        {
-            return true;
-        }
-
-        public void EditServerCommand_Execute()
-        {
-            MessageBox.Show("Edit server");
-        }
-
-        public bool EditServerCommand_CanExecute()
-        {
-            if (SelectedServer is null) return false;
-            return true;
-        }
-
-        public void DelServerCommand_Execute()
-        {
-            Servers.Remove(SelectedServer);
-            SelectedServer = Servers.FirstOrDefault();
-        }
-
-        public bool DelServerCommand_CanExecute()
-        {
-            if (SelectedServer is null) return false;
-            return true;
-        }
-
-        //----------------------------------------------------
-        public void AddSenderCommand_Execute()
-        {
-            MessageBox.Show("Add sender");
-        }
-
-        public bool AddSenderCommand_CanExecute()
-        {
-            return true;
-        }
-
-        public void EditSenderCommand_Execute()
-        {
-            MessageBox.Show("edit");
-        }
-
-        public bool EditSenderCommand_CanExecute()
-        {
-            if (SelectedSender is null) return false;
-            return true;
-        }
-
-        public void DelSenderCommand_Execute()
-        {
-            Senders.Remove(SelectedSender);
-            SelectedSender = Senders.FirstOrDefault();
-        }
-
-        public bool DelSenderCommand_CanExecute()
-        {
-            if (SelectedSender is null) return false;
-            return true;
-        }
-
-        //----------------------------------------------------
-        public void AddRecipientCommand_Execute()
-        {
-            MessageBox.Show("Add recipient");
-        }
-
-        public bool AddRecipientCommand_CanExecute()
-        {
-            return true;
-        }
-
-        public void EditRecipientCommand_Execute()
-        {
-            MessageBox.Show("Edit recipient");
-        }
-
-        public bool EditRecipientCommand_CanExecute()
-        {
-            if (SelectedRecipient is null) return false;
-            return true;
-        }
-
-        public void DelRecipientCommand_Execute()
-        {
-            Recipients.Remove(SelectedRecipient);
-            SelectedRecipient = Recipients.FirstOrDefault();
-        }
-
-        public bool DelRecipientCommand_CanExecute()
-        {
-            if (SelectedRecipient is null) return false;
-            return true;
-        }
-
-        //----------------------------------------------------
-        public void SendMessageCommand_Execute()
-        {
-            var mailSender = _mailService.GetSender(SelectedServer.Address, SelectedServer.Port, SelectedServer.IsSSL, SelectedServer.Login, SelectedServer.Password);
-            mailSender.Send(SelectedSender.Email, SelectedRecipient.Email, SelectedMessage.Subject, SelectedMessage.Body);
-        }
-
-        public bool SendMessageCommand_CanExecute()
-        {
-            if (SelectedServer != null && SelectedSender != null && SelectedRecipient != null && SelectedMessage != null) return true;
-
-            return false;
-        }
-
-        //public void DialogCommand_Execute(string text)
-        //{
-        //    MessageBox.Show(text);
-        //}
-
-        //public bool DialogCommand_CanExecute(string text)
-        //{
-        //    if (text is null) return false;
-        //    return true;
-        //}
-
-        #endregion
-
         public DateTime CurrentTime
         {
             get { return DateTime.Now; }
@@ -187,19 +40,16 @@ namespace MailSenderWPF.ViewModels
             get { return _servers; }
             set { _servers = value; }
         }
-
         public ObservableCollection<Sender> Senders
         {
             get { return _senders; }
             set { _senders = value; }
         }
-
         public ObservableCollection<Recipient> Recipients
         {
             get { return _recipients; }
             set { _recipients = value; }
         }
-
         public ObservableCollection<Message> Messages
         {
             get { return _messages; }
@@ -216,7 +66,6 @@ namespace MailSenderWPF.ViewModels
             get { return _selectedServer; }
             set { _selectedServer = value; OnPropertyChanged(); }
         }
-
         public Sender SelectedSender
         {
             get { return _selectedSender; }
@@ -249,7 +98,6 @@ namespace MailSenderWPF.ViewModels
             AddSenderCommand = new Command(AddSenderCommand_Execute, AddSenderCommand_CanExecute);
             EditSenderCommand = new Command(EditSenderCommand_Execute, EditSenderCommand_CanExecute);
             DelSenderCommand = new Command(DelSenderCommand_Execute, DelSenderCommand_CanExecute);
-
 
             AddRecipientCommand = new Command(AddRecipientCommand_Execute, AddRecipientCommand_CanExecute);
             EditRecipientCommand = new Command(EditRecipientCommand_Execute, EditRecipientCommand_CanExecute);
