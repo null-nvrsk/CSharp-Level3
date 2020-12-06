@@ -28,18 +28,5 @@ namespace MailSenderWPF
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnSend_Click(object sender, RoutedEventArgs e)
-        {
-            var mailer = new Mailer();
-            //
-            // mailer.SendMail();
-
-        }
-
     }
 }

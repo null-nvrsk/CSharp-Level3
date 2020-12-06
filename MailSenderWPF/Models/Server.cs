@@ -13,5 +13,8 @@ namespace MailSenderWPF.Models
 
         public string FullAddress { get { return $"{Address}:{Port}"; } }
 
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public bool IsSSL { get; set; }
     }
 }

@@ -6,8 +6,10 @@
         xmlns:fa5="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:MailSenderWPF"
         xmlns:data="clr-namespace:MailSenderWPF.Data"
+        xmlns:vm="clr-namespace:MailSenderWPF.ViewModels"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="MailSenderWPF.MainWindow"
-        mc:Ignorable="d" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow"
+        mc:Ignorable="d" WindowStyle="SingleBorderWindow"
+    DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="Mail Sender" Width="700" SizeToContent="Height">
     <Window.Resources>
         <Style x:Key="StatColumn0Style" TargetType="TextBlock">
@@ -40,16 +42,16 @@
                     <ToolBarTray DockPanel.Dock="Top" IsLocked="False">
                         <ToolBar Header="Сервера" Width="350" Height="35" Band="0" BandIndex="1">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0" ItemsSource="{x:Static data:TestData.Servers}" DisplayMemberPath="FullAddress">
+                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding Servers}" DisplayMemberPath="FullAddress" SelectedItem="{Binding SelectedServer}">
 
                                 </ComboBox>
-                                <Button Padding="5" Margin="2,0" HorizontalContentAlignment="Center" Width="30">
+                                <Button Padding="5" Margin="2,0" HorizontalContentAlignment="Center" Width="30" Command="{Binding AddServerCommand}">
                                     <fa5:SvgAwesome Icon="Regular_PlusSquare" Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
-                                <Button  Padding="5,3,0,6" Margin="2,0" Width="30">
+                                <Button  Padding="5,3,0,6" Margin="2,0" Width="30"  Command="{Binding EditServerCommand}">
                                     <fa5:SvgAwesome Icon="Regular_Edit" Foreground="Orange" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
-                                <Button Padding="5" Margin="2,0" Width="30">
+                                <Button Padding="5" Margin="2,0" Width="30" Command="{Binding DelServerCommand}">
                                     <fa5:SvgAwesome Icon="Regular_MinusSquare" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
 
@@ -59,16 +61,16 @@
                         </ToolBar>
                         <ToolBar Header="Отправители" Width="350" Height="35" Band="1" >
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0" ItemsSource="{x:Static data:TestData.Senders}" DisplayMemberPath="DisplayName">
+                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding Senders}" DisplayMemberPath="DisplayName" SelectedItem="{Binding SelectedSender}">
 
                                 </ComboBox>
-                                <Button Padding="5" Margin="2,0" HorizontalContentAlignment="Center" Width="30">
+                                <Button Padding="5" Margin="2,0" HorizontalContentAlignment="Center" Width="30"  Command="{Binding AddSenderCommand}">
                                     <fa5:SvgAwesome Icon="Regular_PlusSquare" Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
-                                <Button  Padding="5,3,0,6" Margin="2,0" Width="30">
+                                <Button  Padding="5,3,0,6" Margin="2,0" Width="30" Command="{Binding EditSenderCommand}">
                                     <fa5:SvgAwesome Icon="Regular_Edit" Foreground="Orange" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
-                                <Button Padding="5" Margin="2,0" Width="30">
+                                <Button Padding="5" Margin="2,0" Width="30"  Command="{Binding DelSenderCommand}">
                                     <fa5:SvgAwesome Icon="Regular_MinusSquare" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
 
@@ -76,11 +78,23 @@
 
                         </ToolBar>
                         <ToolBar Header="Получатели" Width="300" Height="35" Band="1">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Padding="5" Margin="2,0" HorizontalContentAlignment="Center" Width="30"  Command="{Binding AddRecipientCommand}">
+                                    <fa5:SvgAwesome Icon="Regular_PlusSquare" Foreground="Green" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Button>
+                                <Button  Padding="5,3,0,6" Margin="2,0" Width="30" Command="{Binding EditRecipientCommand}">
+                                    <fa5:SvgAwesome Icon="Regular_Edit" Foreground="Orange" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Button>
+                                <Button Padding="5" Margin="2,0" Width="30"  Command="{Binding DelRecipientCommand}">
+                                    <fa5:SvgAwesome Icon="Regular_MinusSquare" Foreground="Red" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Button>
+
+                            </StackPanel>
                         </ToolBar>
                         <ToolBar Header="Планировщик" Width="300" Height="35" BandIndex="1">
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid DockPanel.Dock="bottom" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False">
+                    <DataGrid DockPanel.Dock="bottom" ItemsSource="{Binding Recipients}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedRecipient}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="30"></DataGridTextColumn>
                             <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="Auto"></DataGridTextColumn>
@@ -99,7 +113,7 @@
                     <GroupBox Header="Календарь" Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="180">
                             <Calendar></Calendar>
-                            <Button Name="btnSend" Content="Отправить" Margin="0,2" Click="btnSend_Click"></Button>
+                            <Button Name="btnSend" Content="Отправить" Margin="0,2" Command="{Binding SendMessageCommand}"></Button>
                             <Button Content="Запланировать" Margin="0,2"></Button>
                         </StackPanel>
 
@@ -152,7 +166,7 @@
             <TabItem Header="Редактор писем">
                 <DockPanel>
                     <GroupBox DockPanel.Dock="Left" Header="Письма">
-                        <ListBox Name="MessageList"  Width="200" ItemsSource="{x:Static data:TestData.Messages }" DisplayMemberPath="Subject">
+                        <ListBox Name="MessageList"  Width="200" ItemsSource="{Binding Messages}" DisplayMemberPath="Subject"  SelectedItem="{Binding SelectedMessage}">
                         </ListBox>
                     </GroupBox>
 
