@@ -83,10 +83,14 @@ namespace MailSenderWPF.ViewModels
         }
 
         private IMailService _mailService { get; set; }
+        private MailSenderDb _mailSenderDb;
 
-        public MainViewModel(IMailService mailService)
+        public MainViewModel(IMailService mailService, MailSenderDb mailSenderDb)
         {
             _mailService = mailService;
+            _mailSenderDb = mailSenderDb;
+
+            _mailSenderDb.Database.EnsureCreated();
 
             SendMessageCommand = new Command(SendMessageCommand_Execute, SendMessageCommand_CanExecute);
             //DialogCommand = new RelayCommand<string>(DialogCommand_Execute, DialogCommand_CanExecute);

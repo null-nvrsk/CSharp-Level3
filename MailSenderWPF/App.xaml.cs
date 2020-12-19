@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using MailSenderWPF.ViewModels;
 using MailService;
+using MailSenderWPF.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace MailSenderWPF
 {
@@ -18,6 +20,7 @@ namespace MailSenderWPF
     public partial class App : Application
     {
         private static IHost _hosting;
+        const string connString = @"Data Source=.\mailsender.sqlite;";
 
         public static IHost Hosting
         {
@@ -38,6 +41,7 @@ namespace MailSenderWPF
 #endif
 
             services.AddSingleton<MainViewModel>();
+            services.AddDbContext<MailSenderDb>(c=>c.UseSqlite(connString));
 
         }
 
