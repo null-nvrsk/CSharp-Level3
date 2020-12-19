@@ -15,7 +15,7 @@ using MailSenderWPF.ViewModels;
 
 namespace MailSenderWPF.ViewModels
 {
-    public partial class MainViewModel : ViewModelBase
+    public partial class MainViewModel
     {
         public ICommand SendMessageCommand { get; set; }
 
