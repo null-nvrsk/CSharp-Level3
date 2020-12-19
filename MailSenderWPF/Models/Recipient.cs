@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MailSenderWPF.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace MailSenderWPF.Models
 {
-    public class Recipient
+    public class Recipient : Person
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
+
     }
 }
