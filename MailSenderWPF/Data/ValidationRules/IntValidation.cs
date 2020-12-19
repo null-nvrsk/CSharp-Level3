@@ -9,20 +9,22 @@ using System.Windows.Controls;
 
 namespace MailSenderWPF.Data.ValidationRules
 {
-    public class MailValidation : ValidationRule
+    public class IntlValidation : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            var mail = value.ToString();
-            if (Regex.IsMatch(mail, @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-0-9a-z]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$", RegexOptions.IgnoreCase))
+            var result = 0;
+            var str = value.ToString();
+            Int32.TryParse(str, out result);
+
+            if (result != 0)
             {
                 return new ValidationResult(true, "ok");
             }
             else
             {
-                return new ValidationResult(false, "Неверный адрес электронной почты!");
+                return new ValidationResult(false, "Неверное число!");
             }
-
         }
     }
 }
