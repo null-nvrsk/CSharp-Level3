@@ -27,7 +27,7 @@ namespace MailSenderWPF.Data
         {
             get
             {
-                return Enumerable.Range(0, 10).Select(i => new Sender() { Email =  $"address{i}", DisplayName = $"name{i}" }).ToList();
+                return Enumerable.Range(0, 10).Select(i => new Sender() { Email =  $"address{i}", Name = $"name{i}" }).ToList();
             }
         }
 

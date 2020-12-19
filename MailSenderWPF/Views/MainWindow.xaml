@@ -63,7 +63,7 @@
                         </ToolBar>
                         <ToolBar Header="Отправители" Width="350" Height="35" Band="1" >
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding Senders}" DisplayMemberPath="DisplayName" SelectedItem="{Binding SelectedSender}">
+                                <ComboBox SelectedIndex="0" Width="120" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding Senders}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedSender}">
 
                                 </ComboBox>
                                 <Button Padding="5" Margin="2,0" HorizontalContentAlignment="Center" Width="30"  Command="{Binding AddSenderCommand}">

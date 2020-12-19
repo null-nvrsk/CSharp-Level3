@@ -13,11 +13,11 @@ namespace MailSenderWPF.Models.Base
 
     public abstract class EntityNamed : Entity
     {
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
     }
 
     public abstract class Person : EntityNamed
     {
-        public string Email { get; set; }
+        public virtual string Email { get; set; }
     }
 }
