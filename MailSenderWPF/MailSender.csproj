@@ -207,6 +207,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Data\PasswordClass.cs" />
     <Compile Include="Data\TestData.cs" />
+    <Compile Include="Data\ValidationRules\MailValidation.cs" />
     <Compile Include="Models\Base\Entity.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recipient.cs" />

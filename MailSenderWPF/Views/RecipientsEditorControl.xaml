@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MailSenderWPF.Views"
+             xmlns:validation="clr-namespace:MailSenderWPF.Data.ValidationRules"
              mc:Ignorable="d" 
              DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -36,7 +37,18 @@
         
         <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True}"></TextBox>
         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedRecipient.Email}"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2">
+            <TextBox.Text>
+                <Binding Path="SelectedRecipient.Email" NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <validation:MailValidation/>
+                        <ExceptionValidationRule/>
+                        <DataErrorValidationRule/>
+                        <NotifyDataErrorValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
             <StackPanel.Resources>
