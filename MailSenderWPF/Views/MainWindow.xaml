@@ -11,7 +11,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         x:Class="MailSenderWPF.Views.MainWindow"
         mc:Ignorable="d" WindowStyle="SingleBorderWindow"
-    DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="Mail Sender" Width="700" SizeToContent="Height">
     <Window.Resources>
         <Style x:Key="StatColumn0Style" TargetType="TextBlock">
@@ -96,7 +96,11 @@
                         <ToolBar Header="Планировщик" Width="300" Height="35" BandIndex="1">
                         </ToolBar>
                     </ToolBarTray>
-                    <views:RecipientsControl />
+                    <DockPanel>
+                        <views:RecipientsEditorControl DockPanel.Dock="Right"></views:RecipientsEditorControl>
+                        <views:RecipientsControl DockPanel.Dock="Left" />
+                    </DockPanel>
+                    
                 </DockPanel>
             </TabItem>
             <TabItem Header="Планировщик">

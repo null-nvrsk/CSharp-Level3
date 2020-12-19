@@ -219,6 +219,9 @@
     <Compile Include="Views\RecipientsControl.xaml.cs">
       <DependentUpon>RecipientsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RecipientsEditorControl.xaml.cs">
+      <DependentUpon>RecipientsEditorControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -232,6 +235,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\RecipientsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipientsEditorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
