@@ -35,7 +35,14 @@ namespace MailSenderWPF.ViewModels
         //----------------------------------------------------
         public void AddServerCommand_Execute()
         {
-            MessageBox.Show("Add server");
+            var random = new Random();
+
+            var server = new Server() { Address = "server555.ru", Port = 31337, IsSSL = true };
+
+            _mailSenderDb.Servers.Add(server);
+            _mailSenderDb.SaveChanges();
+
+            if (server.Id > 0) Servers.Add(server);
         }
 
         public bool AddServerCommand_CanExecute()
@@ -45,7 +52,16 @@ namespace MailSenderWPF.ViewModels
 
         public void EditServerCommand_Execute()
         {
-            MessageBox.Show("Edit server");
+            SelectedServer.Port++;
+ 
+            _mailSenderDb.Servers.Update(SelectedServer);
+            _mailSenderDb.SaveChanges();
+
+            
+            OnPropertyChanged("Servers");
+            OnPropertyChanged("SelectedServer");
+            //var serverWindow = new ServerWindow();
+            //serverWindow.ShowDialog();
         }
 
         public bool EditServerCommand_CanExecute()

@@ -267,6 +267,11 @@
     <Compile Include="Data\TestData.cs" />
     <Compile Include="Data\ValidationRules\IntValidation.cs" />
     <Compile Include="Data\ValidationRules\MailValidation.cs" />
+    <Compile Include="Migrations\20201220154104_Initial.cs" />
+    <Compile Include="Migrations\20201220154104_Initial.designer.cs">
+      <DependentUpon>20201220154104_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MailSenderDbModelSnapshot.cs" />
     <Compile Include="Models\Base\Entity.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recipient.cs" />

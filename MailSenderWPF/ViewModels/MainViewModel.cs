@@ -92,6 +92,19 @@ namespace MailSenderWPF.ViewModels
 
             _mailSenderDb.Database.EnsureCreated();
 
+            LoadCommands();
+
+            LoadTestDataIntoDb();
+
+            Servers = new ObservableCollection<Server>(_mailSenderDb.Servers);
+            Senders = new ObservableCollection<Sender>(_mailSenderDb.Senders);
+            Recipients = new ObservableCollection<Recipient>(_mailSenderDb.Recipients);
+            Messages = new ObservableCollection<Message>(_mailSenderDb.Messages);
+        }
+
+        //--------------------------------------------------------------------------------------------
+        private void LoadCommands()
+        {
             SendMessageCommand = new Command(SendMessageCommand_Execute, SendMessageCommand_CanExecute);
             //DialogCommand = new RelayCommand<string>(DialogCommand_Execute, DialogCommand_CanExecute);
 
@@ -106,41 +119,37 @@ namespace MailSenderWPF.ViewModels
             AddRecipientCommand = new Command(AddRecipientCommand_Execute, AddRecipientCommand_CanExecute);
             EditRecipientCommand = new Command(EditRecipientCommand_Execute, EditRecipientCommand_CanExecute);
             DelRecipientCommand = new Command(DelRecipientCommand_Execute, DelRecipientCommand_CanExecute);
-
-            Servers = new ObservableCollection<Server>(TestData.Servers);
-            Senders = new ObservableCollection<Sender>(TestData.Senders);
-            Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
-            Messages = new ObservableCollection<Message>(TestData.Messages);
-
-            LoadTestDataIntoDb();
         }
 
-       private void LoadTestDataIntoDb()
+        //--------------------------------------------------------------------------------------------
+        private void LoadTestDataIntoDb()
         {
             var serversCount = _mailSenderDb.Servers.Count();
             if (serversCount == 0)
             {
-                _mailSenderDb.Servers.AddRange(Servers);
+                _mailSenderDb.Servers.AddRange(TestData.Servers);
                 _mailSenderDb.SaveChanges();
             }
             var sendersCount = _mailSenderDb.Senders.Count();
             if (sendersCount == 0)
             {
-                _mailSenderDb.Senders.AddRange(Senders);
+                _mailSenderDb.Senders.AddRange(TestData.Senders);
                 _mailSenderDb.SaveChanges();
             }
             var recipientsCount = _mailSenderDb.Recipients.Count();
             if (recipientsCount == 0)
             {
-                _mailSenderDb.Recipients.AddRange(Recipients);
+                _mailSenderDb.Recipients.AddRange(TestData.Recipients);
                 _mailSenderDb.SaveChanges();
             }
             var messagesCount = _mailSenderDb.Messages.Count();
             if (messagesCount == 0)
             {
-                _mailSenderDb.Messages.AddRange(Messages);
+                _mailSenderDb.Messages.AddRange(TestData.Messages);
                 _mailSenderDb.SaveChanges();
             }
         }
+
+        //--------------------------------------------------------------------------------------------
     }
 }
