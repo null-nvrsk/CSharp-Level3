@@ -1,21 +1,34 @@
 ﻿using MailSenderWPF.Models.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MailSenderWPF.Models
 {
-    public class Server : Entity
+    public class Server : INotifyPropertyChanged
     {
-        public string Address { get; set; }
-        public int Port { get; set; }
+        private int _port { get; set; }
+
+
+        public int Id { get; set; }
+    public string Address { get; set; }
+        public int Port { get { return _port; } set { _port = value; OnPropertyChanged(); } }
 
         public string FullAddress { get { return $"{Address}:{Port}"; } }
 
         public string Login { get; set; }
         public string Password { get; set; }
         public bool IsSSL { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            if (PropertyChanged != null) PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using MailSenderWPF.Commands;
 using MailService;
 using MailSenderWPF.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace MailSenderWPF.ViewModels
 {
@@ -72,6 +73,10 @@ namespace MailSenderWPF.ViewModels
 
         public void DelServerCommand_Execute()
         {
+            _mailSenderDb.Entry(SelectedServer).State = EntityState.Deleted;
+            _mailSenderDb.Servers.Remove(SelectedServer);
+            _mailSenderDb.SaveChanges();
+
             Servers.Remove(SelectedServer);
             SelectedServer = Servers.FirstOrDefault();
         }
