@@ -14,7 +14,7 @@ namespace MailSenderWPF.Data
             get
             {
                 var result = new List<Server>();
-                for (int i = 0; i < 10; i++)
+                for (int i = 1; i <= 10; i++)
                 {
                     var server = new Server { Address = $"address{i}", Port = 10000 + i };
                     result.Add(server);    
@@ -27,7 +27,7 @@ namespace MailSenderWPF.Data
         {
             get
             {
-                return Enumerable.Range(0, 10).Select(i => new Sender() { Email =  $"address{i}", Name = $"name{i}" }).ToList();
+                return Enumerable.Range(1, 10).Select(i => new Sender() { Email =  $"address{i}", Name = $"name{i}" }).ToList();
             }
         }
 
@@ -35,7 +35,7 @@ namespace MailSenderWPF.Data
         {
             get
             {
-                return Enumerable.Range(0, 10).Select(i => new Recipient() { Email = $"address{i}", Name = $"name{i}", Id = i }).ToList();
+                return Enumerable.Range(1, 10).Select(i => new Recipient() { Email = $"address{i}", Name = $"name{i}", Id = i }).ToList();
             }
         }
 
@@ -43,7 +43,7 @@ namespace MailSenderWPF.Data
         {
             get
             {
-                return Enumerable.Range(0, 10).Select(i => new Message() { Subject = $"subject{i}", Body = $"body{i}" }).ToList();
+                return Enumerable.Range(1, 10).Select(i => new Message() { Subject = $"subject{i}", Body = $"body{i}" }).ToList();
             }
         }
 

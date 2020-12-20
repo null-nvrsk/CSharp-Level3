@@ -20,7 +20,7 @@ namespace MailSenderWPF
     public partial class App : Application
     {
         private static IHost _hosting;
-        const string connString = @"Data Source=.\mailsender.sqlite;";
+        const string connString = @"Data Source=.\MailSenderDB.sqlite;";
 
         public static IHost Hosting
         {
